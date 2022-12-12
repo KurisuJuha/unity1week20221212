@@ -10,7 +10,7 @@ namespace Assets.Core.Engine
         public ReadOnlyCollection<GameObject> gameObjects => _gameObjects.AsReadOnly();
         public Input input
         {
-            get => _input; 
+            get => _input;
             set
             {
                 _input = value;
@@ -26,6 +26,7 @@ namespace Assets.Core.Engine
         private Frame(Frame past)
         {
             this.past = past;
+            past._gameObjects.ForEach(g => _gameObjects.Add(g.Copy()));
         }
 
         private void OnPastChanged()
