@@ -1,21 +1,17 @@
-﻿using Assets.Core.Collision;
+﻿using Assets.Core.Engine;
 using Assets.Core.Math;
+using FixMath.NET;
 
 namespace Assets.Core
 {
-    public class Player
+    public class Player : GameObject
     {
-        BoxCollision collision;
-        public readonly FixTransform transform;
+        public Enemy enemy;
 
-        public Player()
+        public override void Update()
         {
-            transform = new FixTransform()
-            {
-                position = new FixVector(new FixMath.NET.Fix64(-3), new FixMath.NET.Fix64(0)),
-                size = new FixVector(new FixMath.NET.Fix64(1), new FixMath.NET.Fix64(1)),
-            };
-            collision = new BoxCollision(ref transform);
+            transform.position += new FixVector(new Fix64(1) / new Fix64(100), new Fix64(0));
+            Debug.Log(collision.Detect(enemy.collision));
         }
     }
 }

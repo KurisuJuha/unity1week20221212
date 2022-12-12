@@ -1,6 +1,6 @@
 ﻿using Assets.Core.Math;
 
-namespace Assets.Core
+namespace Assets.Core.Engine
 {
     public class FixTransform
     {

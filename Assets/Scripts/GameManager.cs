@@ -13,13 +13,19 @@ namespace JuhaKurisu
 
         private void Awake()
         {
-            Assets.Core.Debug.log += UnityEngine.Debug.Log;
+            Assets.Core.Engine.Debug.log += Debug.Log;
             player = new Player();
             enemy = new Enemy();
+            player.enemy = enemy;
+
+            player.Init();
+            enemy.Init();
         }
 
-        public void Update()
+        public void FixedUpdate()
         {
+            player.Update();
+            enemy.Update();
             playerObj.transform.position = new Vector2((float)player.transform.position.x, (float)player.transform.position.y);
             enemyObj.transform.position = new Vector2((float)enemy.transform.position.x, (float)enemy.transform.position.y);
         }

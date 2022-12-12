@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Assets.Core
+namespace Assets.Core.Engine
 {
     public static class Debug
     {
