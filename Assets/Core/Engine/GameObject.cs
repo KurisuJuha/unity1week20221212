@@ -20,6 +20,8 @@ namespace Assets.Core.Engine
 
         public virtual void Init() { }
 
-        public virtual void Update() { }
+        public virtual void Update(Frame frame) { }
+
+        public abstract GameObject Copy();
     }
 }
