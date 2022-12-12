@@ -31,7 +31,10 @@ namespace Assets.Core.Engine
 
         private void OnPastChanged()
         {
-            // 入力と過去をもとに現在を再計算
+            // 過去のGameObjectを全てコピーする
+            past._gameObjects.ForEach(g => _gameObjects.Add(g.Copy()));
+
+            // 入力と過去のコピーをもとに現在を再計算
             foreach (var gameObject in _gameObjects)
             {
                 gameObject.Update(this);
