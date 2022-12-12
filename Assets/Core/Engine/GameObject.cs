@@ -15,7 +15,7 @@ namespace Assets.Core.Engine
                 position = new FixVector(new FixMath.NET.Fix64(0), new FixMath.NET.Fix64(0)),
                 size = new FixVector(new FixMath.NET.Fix64(1), new FixMath.NET.Fix64(1)),
             };
-            collision = new BoxCollision(ref transform);
+            collision = new BoxCollision(transform);
         }
 
         public virtual void Init() { }

@@ -6,10 +6,19 @@ namespace Assets.Core.Engine
     public class Frame
     {
         public readonly Frame past;
-        public ReadOnlyCollection<Frame> future => _future.AsReadOnly();
-        public readonly Input input;
+        public ReadOnlyCollection<Frame> futures => _futures.AsReadOnly();
+        public Input input
+        {
+            get => _input; 
+            set
+            {
+                _input = value;
+                OnPastChanged();
+            }
+        }
 
-        private readonly List<Frame> _future;
+        private readonly List<Frame> _futures;
+        private Input _input;
 
         private Frame() { }
         private Frame(Frame past)
@@ -17,16 +26,28 @@ namespace Assets.Core.Engine
             this.past = past;
         }
 
-        public static Frame CreateRoot()
+        private void OnPastChanged()
         {
-            return new Frame();
+            //TODO: 入力と過去をもとに現在を再計算
+
+
+            // 全ての未来に過去が変わったことを知らせる
+            foreach (var future in _futures)
+            {
+                future.OnPastChanged();
+            }
         }
 
         public Frame CreateFuture()
         {
             var f = new Frame(this);
-            _future.Add(f);
+            _futures.Add(f);
             return f;
+        }
+
+        public static Frame CreateRoot()
+        {
+            return new Frame();
         }
     }
 }
