@@ -8,7 +8,7 @@ namespace Assets.Core.Collision
     {
         readonly FixTransform transform;
 
-        public BoxCollision(ref FixTransform transform)
+        public BoxCollision(FixTransform transform)
         {
             this.transform = transform;
         }

@@ -8,7 +8,7 @@ namespace Assets.Core
 
         public override GameObject Copy()
         {
-            return new Enemy();
+            return BaseCopy(new Enemy());
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Assets.Core
 
         public override GameObject Copy()
         {
-            return new Player();
+            return BaseCopy(new Player());
         }
     }
 }

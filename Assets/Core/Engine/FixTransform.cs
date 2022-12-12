@@ -13,6 +13,12 @@ namespace Assets.Core.Engine
             position = new FixVector();
         }
 
+        public FixTransform(FixVector size, FixVector position)
+        {
+            this.size = size;
+            this.position = position;
+        }
+
         public FixTransform(FixTransform fixTransform)
         {
             size = fixTransform.size;

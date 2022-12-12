@@ -6,7 +6,7 @@ namespace Assets.Core.Engine
     public abstract class GameObject
     {
         internal BoxCollision collision;
-        public readonly FixTransform transform;
+        public FixTransform transform { get; private set; }
 
         public GameObject()
         {
@@ -23,5 +23,12 @@ namespace Assets.Core.Engine
         public virtual void Update(Frame frame) { }
 
         public abstract GameObject Copy();
+
+        protected GameObject BaseCopy(GameObject newGameObject)
+        {
+            newGameObject.transform = new FixTransform(transform);
+            newGameObject.collision = new BoxCollision(newGameObject.transform);
+            return newGameObject;
+        }
     }
 }
