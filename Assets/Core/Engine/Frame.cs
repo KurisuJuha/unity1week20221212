@@ -7,6 +7,7 @@ namespace Assets.Core.Engine
     {
         public readonly Frame past;
         public ReadOnlyCollection<Frame> futures => _futures.AsReadOnly();
+        public ReadOnlyCollection<GameObject> gameObjects => _gameObjects.AsReadOnly();
         public Input input
         {
             get => _input; 
@@ -18,6 +19,7 @@ namespace Assets.Core.Engine
         }
 
         private readonly List<Frame> _futures;
+        private readonly List<GameObject> _gameObjects;
         private Input _input;
 
         private Frame() { }
@@ -28,8 +30,11 @@ namespace Assets.Core.Engine
 
         private void OnPastChanged()
         {
-            //TODO: 入力と過去をもとに現在を再計算
-
+            // 入力と過去をもとに現在を再計算
+            foreach (var gameObject in _gameObjects)
+            {
+                gameObject.Update(this);
+            }
 
             // 全ての未来に過去が変わったことを知らせる
             foreach (var future in _futures)
