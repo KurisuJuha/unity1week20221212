@@ -18,11 +18,11 @@ namespace Assets.Core.Engine
             collision = new BoxCollision(transform);
         }
 
-        public virtual void Init() { }
+        internal virtual void Init() { }
 
-        public virtual void Update(Frame frame) { }
+        internal virtual void Update(Frame frame) { }
 
-        public abstract GameObject Copy();
+        internal abstract GameObject Copy();
 
         protected GameObject BaseCopy(GameObject newGameObject)
         {

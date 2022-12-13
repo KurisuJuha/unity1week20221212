@@ -1,16 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Assets.Core.Engine
 {
     public class TimeLineEngine
     {
-        readonly List<GameObject> gameObjects;
-        readonly Frame rootFrame;
+        public readonly Frame rootFrame;
+        public readonly int maxFrameCount;
 
-        public TimeLineEngine()
+        public TimeLineEngine(GameObject[] gameObjects, int maxFrameCount)
         {
-            gameObjects = new List<GameObject>();
-            rootFrame = Frame.CreateRoot();
+            rootFrame = Frame.CreateRoot(gameObjects, maxFrameCount);
+            this.maxFrameCount = maxFrameCount;
         }
     }
 }

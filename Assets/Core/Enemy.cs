@@ -4,9 +4,9 @@ namespace Assets.Core
 {
     public class Enemy : GameObject
     {
-        internal Enemy() { }
+        public Enemy() { }
 
-        public override GameObject Copy()
+        internal override GameObject Copy()
         {
             return BaseCopy(new Enemy());
         }
