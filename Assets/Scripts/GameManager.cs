@@ -1,13 +1,14 @@
 using UnityEngine;
 using Assets.Core;
 using Assets.Core.Engine;
+using System.Linq;
 
 namespace JuhaKurisu
 {
     public class GameManager : MonoBehaviour
     {
         [SerializeField] TimeLineViewer timeLineViewer;
-        TimeLineEngine engine;
+        public static TimeLineEngine engine { get; private set; }
 
         private void Awake()
         {
@@ -19,14 +20,12 @@ namespace JuhaKurisu
                 new Enemy(),
             }, 10);
 
-            Frame f = engine.rootFrame;
+            Frame root = engine.rootFrame;
 
-            for (int i = 0; i < 9; i++)
-            {
-                 UnityEngine.Debug.Log(f.CreateFuture());
-                f = f.CreateFuture();
-                UnityEngine.Debug.Log(f);
-            }
+            root.CreateFuture().CreateFuture().CreateFuture().CreateFuture();
+            root.futures.First().futures.First().CreateFuture().CreateFuture();
+            root.futures.First().CreateFuture();
+            root.futures.First().futures.First().futures[1].CreateFuture();
 
             timeLineViewer.timeLineEngine = engine;
         }
