@@ -78,6 +78,10 @@ namespace Assets.Core.Engine
 
             var f = new Frame(this, maxFrameCount);
             _futures.Add(f);
+
+            // maxFrameCountに達するまで未来を作る
+            if (frameCount + 1 < maxFrameCount) f.CreateFuture();
+
             return f;
         }
 
