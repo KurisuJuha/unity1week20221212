@@ -1,7 +1,6 @@
 using UnityEngine;
 using Assets.Core;
 using Assets.Core.Engine;
-using System.Linq;
 
 namespace JuhaKurisu
 {
