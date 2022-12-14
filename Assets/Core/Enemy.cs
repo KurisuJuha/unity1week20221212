@@ -4,7 +4,10 @@ namespace Assets.Core
 {
     public class Enemy : GameObject
     {
-        public Enemy() { }
+        public Enemy(int timeAxisId) : base(timeAxisId)
+        {
+
+        }
 
         internal override GameObject Copy()
         {

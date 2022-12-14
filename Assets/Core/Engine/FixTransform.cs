@@ -4,25 +4,25 @@ namespace Assets.Core.Engine
 {
     public class FixTransform
     {
-        public FixVector size;
-        public FixVector position;
+        public FixVector size { get; internal set; }
+        public FixVector position { get; internal set; }
+        /// <summary>
+        /// -1の場合時間軸関係なく干渉できる
+        /// </summary>
+        public int timeAxisId { get; internal set; }
 
         public FixTransform()
         {
             size = new FixVector();
             position = new FixVector();
-        }
-
-        public FixTransform(FixVector size, FixVector position)
-        {
-            this.size = size;
-            this.position = position;
+            timeAxisId = -1;
         }
 
         public FixTransform(FixTransform fixTransform)
         {
             size = fixTransform.size;
             position = fixTransform.position;
+            timeAxisId = fixTransform.timeAxisId;
         }
     }
 }

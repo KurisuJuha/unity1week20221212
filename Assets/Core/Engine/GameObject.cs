@@ -14,6 +14,18 @@ namespace Assets.Core.Engine
             {
                 position = new FixVector(new FixMath.NET.Fix64(0), new FixMath.NET.Fix64(0)),
                 size = new FixVector(new FixMath.NET.Fix64(1), new FixMath.NET.Fix64(1)),
+                timeAxisId = -1
+            };
+            collision = new BoxCollision(transform);
+        }
+
+        public GameObject(int timeAxisId)
+        {
+            transform = new FixTransform()
+            {
+                position = new FixVector(new FixMath.NET.Fix64(0), new FixMath.NET.Fix64(0)),
+                size = new FixVector(new FixMath.NET.Fix64(1), new FixMath.NET.Fix64(1)),
+                timeAxisId = timeAxisId
             };
             collision = new BoxCollision(transform);
         }

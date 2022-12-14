@@ -19,8 +19,9 @@ namespace Assets.Core.Collision
             FixVector distance = FixVector.Abs(otherBoxCollision.transform.position - transform.position);
 
             if (distance.x < (otherTransform.size.x + transform.size.x) / new Fix64(2)
-             && distance.y < (otherTransform.size.y + transform.size.y) / new Fix64(2)) return true;
-
+             && distance.y < (otherTransform.size.y + transform.size.y) / new Fix64(2)
+             && (transform.timeAxisId == -1 || otherTransform.timeAxisId == -1 || transform.timeAxisId == otherTransform.timeAxisId)) 
+                return true;
 
             return false;
         }

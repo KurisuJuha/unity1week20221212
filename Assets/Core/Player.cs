@@ -6,7 +6,10 @@ namespace Assets.Core
 {
     public class Player : GameObject
     {
-        public Player() { }
+        public Player(int timeAxisId) : base(timeAxisId)
+        {
+
+        }
 
         internal override void Update(Frame frame)
         {
