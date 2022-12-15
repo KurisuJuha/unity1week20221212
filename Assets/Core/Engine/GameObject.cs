@@ -1,46 +1,35 @@
-﻿using Assets.Core.Collision;
-using Assets.Core.Math;
+﻿using Assets.Core.Math;
+using FixMath.NET;
 
 namespace Assets.Core.Engine
 {
-    public abstract class GameObject
+    public struct GameObject
     {
-        internal BoxCollision collision;
-        public FixTransform transform { get; private set; }
+        public FixVector size { get; internal set; }
+        public FixVector position { get; internal set; }
+        public Input input;
+        public readonly int timeAxisId;
+        public readonly string Id;
 
-        public GameObject()
+        public GameObject(string Id,int timeAxisId)
         {
-            transform = new FixTransform()
-            {
-                position = new FixVector(new FixMath.NET.Fix64(0), new FixMath.NET.Fix64(0)),
-                size = new FixVector(new FixMath.NET.Fix64(1), new FixMath.NET.Fix64(1)),
-                timeAxisId = -1
-            };
-            collision = new BoxCollision(transform);
+            size = new FixVector();
+            position = new FixVector();
+            input = new Input();
+            this.timeAxisId = timeAxisId;
+            this.Id = Id;
         }
 
-        public GameObject(int timeAxisId)
+        public bool Detect(GameObject gameObject)
         {
-            transform = new FixTransform()
-            {
-                position = new FixVector(new FixMath.NET.Fix64(0), new FixMath.NET.Fix64(0)),
-                size = new FixVector(new FixMath.NET.Fix64(1), new FixMath.NET.Fix64(1)),
-                timeAxisId = timeAxisId
-            };
-            collision = new BoxCollision(transform);
-        }
+            FixVector distance = FixVector.Abs(gameObject.position - position);
 
-        internal virtual void Init() { }
+            if (distance.x < (gameObject.size.x + size.x) / new Fix64(2)
+             && distance.y < (gameObject.size.y + size.y) / new Fix64(2)
+            && (timeAxisId == -1 || gameObject.timeAxisId == -1 || timeAxisId == gameObject.timeAxisId))
+                return true;
 
-        internal virtual void Update(Frame frame) { }
-
-        internal abstract GameObject Copy();
-
-        protected GameObject BaseCopy(GameObject newGameObject)
-        {
-            newGameObject.transform = new FixTransform(transform);
-            newGameObject.collision = new BoxCollision(newGameObject.transform);
-            return newGameObject;
+            return false;
         }
     }
 }
